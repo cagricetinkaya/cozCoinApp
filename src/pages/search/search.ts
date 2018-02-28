@@ -14,7 +14,7 @@ import { Items, Api } from '../../providers/providers';
 export class SearchPage {
 
   currentItems: any = [];
-
+  data:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items, public httpClientModule:HttpClientModule, public api:Api) { }
 
 
@@ -22,19 +22,16 @@ export class SearchPage {
 
     let c  =  this.api.get('' + 'getData','')
 
-
     c.subscribe((res: any) => {
       if (res.success == true) {
-        console.log('SUCCESS', res.data);
-      } else {
+        this.data= JSON.stringify(res.data);
       }
     }, err => {
       console.error('ERROR', err);
     });
 
-    return c;
-
   }
+
   /**
    * Perform a service for the proper items.
    */
