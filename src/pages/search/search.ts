@@ -1,20 +1,40 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { HttpClientModule } from '@angular/common/http';
 import { Item } from '../../models/item';
-import { Items } from '../../providers/providers';
+import { Items, Api } from '../../providers/providers';
 
 @IonicPage()
+
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html'
 })
+
 export class SearchPage {
 
   currentItems: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items, public httpClientModule:HttpClientModule, public api:Api) { }
 
+
+  getCoins(){
+
+    let c  =  this.api.get('' + 'getData','')
+
+
+    c.subscribe((res: any) => {
+      if (res.success == true) {
+        console.log('SUCCESS', res.data);
+      } else {
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+
+    return c;
+
+  }
   /**
    * Perform a service for the proper items.
    */

@@ -8,8 +8,10 @@
 
 
 <ion-content>
+  <ion-buttons ion-item (click)="getCoins()">Naber</ion-buttons>
   <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
   <ion-list>
+    <p>bilgi : {{data}}</p>
     <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
       <ion-avatar item-start>
         <img [src]="item.profilePic" />
