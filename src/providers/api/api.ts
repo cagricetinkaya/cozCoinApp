@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class Api {
 
   url: string = 'http://localhost:8085/couch';
+  cc : string;
 
   constructor(public http: HttpClient) {
   }
@@ -23,8 +24,10 @@ export class Api {
     // Support easy query params for GET requests
     if (params) {
       reqOpts.params = new HttpParams();
-      for (let k in params) {
-        reqOpts.params = reqOpts.params.set(k, params[k]);
+      let paramsArr  = params.split('&');
+      for (let k in paramsArr) {
+        let paramDetail =  paramsArr[k].split(':');
+        reqOpts.params = reqOpts.params.set(paramDetail[0], paramDetail[1]);
       }
     }
 

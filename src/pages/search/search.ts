@@ -20,7 +20,7 @@ export class SearchPage {
 
   getCoins(){
 
-    let c  =  this.api.get('' + 'getData','')
+    let c  =  this.api.get('' + 'getData','view:findByType','')
 
     c.subscribe((res: any) => {
       if (res.success == true) {
