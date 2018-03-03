@@ -31,7 +31,7 @@ export class Api {
       }
     }
 
-    return this.http.get(this.url + '/' + endpoint, reqOpts);
+    return this.http.get(this.url + '/' + endpoint, reqOpts).map(res=> res);
   }
 
   post(endpoint: string, body: any, reqOpts?: any) {

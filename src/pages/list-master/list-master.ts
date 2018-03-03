@@ -3,6 +3,7 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
+import {JSONP_ERR_NO_CALLBACK} from "@angular/common/http/src/jsonp";
 
 @IonicPage()
 @Component({
@@ -11,9 +12,15 @@ import { Items } from '../../providers/providers';
 })
 export class ListMasterPage {
   currentItems: Item[];
+  picAdress:string;
+  favIcon:string;
+  favIconfalse:string;
 
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
     this.currentItems = this.items.query();
+    this.picAdress="assets/img/coinIcon32_32/";
+    this.favIcon="assets/img/favourite/fav24x24.png";
+    this.favIconfalse="assets/img/favourite/fav_g24x24.png";
   }
 
   /**

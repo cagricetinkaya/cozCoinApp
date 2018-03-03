@@ -18,13 +18,26 @@
     <ion-item-sliding *ngFor="let item of currentItems">
       <button ion-item (click)="openItem(item)">
         <ion-avatar item-start>
-          <img [src]="item.profilePic" />
+          <img [src]="picAdress+item.code+'.png'"/>
         </ion-avatar>
         <h2>{{item.name}}</h2>
-        <p>{{item.about}}</p>
+        <p>{{'PRICE'|translate}} : {{item.cost}}</p>
         <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-      </button>
+        <!--<ion-avatar item-end *ngIf="item.fav;then content else contentfalse">-->
+          <!--<ion-img [src]="favIcon"></ion-img>-->
+          <!--<ion-img [src]="favIconfalse"></ion-img>-->
+        <!--</ion-avatar>-->
+        <ion-avatar item-end *ngIf="item.fav; then thenTemplateName else elseTemplateName">
+        </ion-avatar>
 
+        <ng-template #thenTemplateName>
+          <ion-img [src]="favIcon"></ion-img>
+        </ng-template>
+
+        <ng-template #elseTemplateName>
+          <ion-img [src]="favIconfalse"></ion-img>
+        </ng-template>
+      </button>
       <ion-item-options>
         <button ion-button color="danger" (click)="deleteItem(item)">
           {{ 'DELETE_BUTTON' | translate }}
