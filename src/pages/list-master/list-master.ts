@@ -3,7 +3,7 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
-import {JSONP_ERR_NO_CALLBACK} from "@angular/common/http/src/jsonp";
+
 
 @IonicPage()
 @Component({
@@ -23,11 +23,7 @@ export class ListMasterPage {
     this.favIconfalse="assets/img/favourite/fav_g24x24.png";
   }
 
-  /**
-   * The view loaded, let's query our items for the list
-   */
-  ionViewDidLoad() {
-  }
+
 
   /**
    * Prompt the user to add a new item. This shows our ItemCreatePage in a
