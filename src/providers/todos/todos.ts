@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import PouchDB from 'pouchdb';
+import {API_ENDPOINT, DATABASE_NAME} from '../../assets/Constants/PouchConstants';
 
 /*
   Generated class for the TodosProvider provider.
@@ -16,10 +17,10 @@ export class TodosProvider {
   remote: any;
 
   constructor(public http: HttpClient) {
+    this.db = new PouchDB(DATABASE_NAME);
 
-    this.db = new PouchDB('coin');
 
-    this.remote = 'http://10.6.20.162:5984/coin';
+    this.remote = API_ENDPOINT;
 
     let options = {
       live: true,
@@ -32,10 +33,8 @@ export class TodosProvider {
   }
 
 
-  getTodosProvider(){
-
-
-    if (this.data){
+  getTodosProvider(type) {
+    if (this.data) {
       return Promise.resolve(this.data);
     }
 
@@ -54,8 +53,12 @@ export class TodosProvider {
         });
 
         resolve(this.data);
-
-        this.db.changes({live: true, since: 'now', include_docs: true}).on('change', (change) => {
+        debugger;
+        this.db.changes({
+          live: true, since: 'now', include_docs: true,
+          filter: type//değişen değerleri filtreleyebilmek için fonksiyon yazılması gerekiyor.
+          //bunu bu şekilde değişken fonksiyon olarak yaptık.
+        }).on('change', (change) => {
           this.handleChange(change);
         });
 
@@ -68,28 +71,29 @@ export class TodosProvider {
     });
   }
 
-  handleChange(change){
+  handleChange(change) {
+    debugger;
 
     let changedDoc = null;
     let changedIndex = null;
-
     this.data.forEach((doc, index) => {
 
-      if(doc._id === change.id){
+      if (doc._id === change.id) {
         changedDoc = doc;
         changedIndex = index;
       }
 
     });
 
+
     //A document was deleted
-    if(change.deleted){
+    if (change.deleted) {
       this.data.splice(changedIndex, 1);
     }
     else {
 
       //A document was updated
-      if(changedDoc){
+      if (changedDoc) {
         this.data[changedIndex] = change.doc;
       }
 
@@ -101,25 +105,24 @@ export class TodosProvider {
     }
   }
 
-  createTodosProvider(todo){
+  createTodosProvider(todo) {
     // bizim db ye kayıt gonderirken kullanacağımız method
     this.db.post(todo);
   }
 
-  updateTodosProvider(todo){
+  updateTodosProvider(todo) {
     // bizim db de update yaparken kullanacağımız method
     this.db.put(todo).catch((err) => {
       console.log(err);
     });
   }
 
-  deleteTodosProvider(todo){
+  deleteTodosProvider(todo) {
     // bizim db de kayıt silerken kullanacağımız method
     this.db.remove(todo).catch((err) => {
       console.log(err);
     });
   }
-
 
 
 }
