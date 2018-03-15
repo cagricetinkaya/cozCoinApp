@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-list >
+  <ion-list cache-view="false" >
 
     <ion-item-sliding *ngFor="let todo of data">
-      <button ion-item >
-        <!--*ngIf="todo.Coin_Name; then thenTemplateName "-->
+      <button ion-item *ngIf="todo.Coin_Name">
+        <!--="todo.Coin_Name; then thenTemplateName "-->
         <ion-avatar item-start>
           <img [src]="picAdress+todo.Coin_Code+'.png'"/>
         </ion-avatar>

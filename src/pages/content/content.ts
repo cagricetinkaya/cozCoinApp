@@ -14,11 +14,10 @@ export class ContentPage {
   data: any;
   picAdress:string;
   constructor(public navCtrl: NavController, public todoProvider: TodosProvider) {
-    this.picAdress="assets/img/coinIcon32_32/";
+    this.picAdress="assets/img/16x16/";
     let type=function (doc) {//değişiklik takibini filtrelemek için fonksiyon tanımlamak gerekli
       return doc.Type === 'Coins' || doc.Type==='Prices';
     };
-    debugger;
     this.todoProvider.getTodosProvider(type).then((data) => {
       this.data = data;
     });

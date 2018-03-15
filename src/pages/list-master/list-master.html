@@ -23,10 +23,7 @@
         <h2>{{item.name}}</h2>
         <p>{{'PRICE'|translate}} : {{item.cost}}</p>
         <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-        <!--<ion-avatar item-end *ngIf="item.fav;then content else contentfalse">-->
-          <!--<ion-img [src]="favIcon"></ion-img>-->
-          <!--<ion-img [src]="favIconfalse"></ion-img>-->
-        <!--</ion-avatar>-->
+
         <ion-avatar item-end *ngIf="item.fav; then thenTemplateName else elseTemplateName">
         </ion-avatar>
 

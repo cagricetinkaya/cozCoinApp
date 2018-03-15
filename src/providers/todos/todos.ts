@@ -33,7 +33,7 @@ export class TodosProvider {
   }
 
 
-  getTodosProvider(type) {
+  getTodosProvider(type) { //type buraya fonksiyon olarak gönderilmelidir. type filtresi.
     if (this.data) {
       return Promise.resolve(this.data);
     }
@@ -53,7 +53,6 @@ export class TodosProvider {
         });
 
         resolve(this.data);
-        debugger;
         this.db.changes({
           live: true, since: 'now', include_docs: true,
           filter: type//değişen değerleri filtreleyebilmek için fonksiyon yazılması gerekiyor.
