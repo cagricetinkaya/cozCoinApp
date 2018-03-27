@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <input type="number" [(ngModel)]="param1"/>
+  <input type="number" [(ngModel)]="param2"/>
+
+  <button ion-button full (click)="promiseTest(param1,param2)">Test</button>
+
+  <button ion-button full (click)="promiseRace()">Race</button>
+  <br>
+  <p>Timer Value : {{value}} </p>
+
+  <button ion-button full (click)="start()" >Start</button>
+  <button ion-button full (click)="stop()" >Stop</button>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+<!--<ion-content>-->
+  <!--<ion-buttons ion-item (click)="getCoins()">Naber</ion-buttons>-->
+  <!--<ion-searchbar (ionInput)="getItems($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>-->
+  <!--<ion-list>-->
+    <!--<p *ngFor="let dat of data">bilgi : {{dat.Coin_Name}}</p>-->
+    <!--<button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">-->
+      <!--<ion-avatar item-start>-->
+        <!--<img [src]="item.profilePic" />-->
+      <!--</ion-avatar>-->
+      <!--<h2>{{item.name}}</h2>-->
+      <!--<p>{{item.about}}</p>-->
+      <!--<ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>-->
+    <!--</button>-->
+  <!--</ion-list>-->
+<!--</ion-content>-->

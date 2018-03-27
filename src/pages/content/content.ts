@@ -13,15 +13,22 @@ import {TodosProvider} from '../../providers/todos/todos'
 export class ContentPage {
   data: any;
   picAdress:string;
+  id:any;
   constructor(public navCtrl: NavController, public todoProvider: TodosProvider) {
-    this.picAdress="assets/img/16x16/";
+    this.picAdress="assets/img/32x32/";
     let type=function (doc) {//değişiklik takibini filtrelemek için fonksiyon tanımlamak gerekli
       return doc.Type === 'Coins' || doc.Type==='Prices';
     };
-    this.todoProvider.getTodosProvider(type).then((data) => {
-      this.data = data;
-    });
-    //todoProvider.getTodosProvider(type);
+    this.changeItem(type);
   }
 
- }
+  changeItem(type) {
+    this.id= this.todoProvider.getTick(type).subscribe(data=>{
+      this.data=data;
+    });
+    // this.todoProvider.getTodosProvider(type).then((data) => {
+    //   this.data = data;
+    // });
+  }
+}
+

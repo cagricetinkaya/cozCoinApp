@@ -2,6 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import PouchDB from 'pouchdb';
 import {API_ENDPOINT, DATABASE_NAME} from '../../assets/Constants/PouchConstants';
+import {Observable} from "rxjs/Observable";
+
 
 /*
   Generated class for the TodosProvider provider.
@@ -17,6 +19,7 @@ export class TodosProvider {
   remote: any;
 
   constructor(public http: HttpClient) {
+
     this.db = new PouchDB(DATABASE_NAME);
 
 
@@ -32,6 +35,37 @@ export class TodosProvider {
 
   }
 
+  observerId: any;
+  myObserver: any;
+  isRunning = false;
+  count: any = 0;
+
+  getTick(type): Observable<any> {
+    this.observerId = Observable.create(observer => {
+      this.myObserver = observer;
+      this.startTimer();
+      this.getTodosProvider(type);
+    });
+    return this.observerId;
+  }
+
+  startTimer() {
+    this.isRunning=true;
+    this.tick();
+  }
+  tick() {
+    setTimeout(x => {
+      if (this.isRunning) {
+        this.myObserver.next(this.data);
+        this.tick();
+      }
+    }, 500)
+  }
+
+  stopTimer()
+  {
+    this.isRunning=false;
+  }
 
   getTodosProvider(type) { //type buraya fonksiyon olarak gönderilmelidir. type filtresi.
     if (this.data) {
@@ -71,7 +105,7 @@ export class TodosProvider {
   }
 
   handleChange(change) {
-    debugger;
+    //debugger;
 
     let changedDoc = null;
     let changedIndex = null;
