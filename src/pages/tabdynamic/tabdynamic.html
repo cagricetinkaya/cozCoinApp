@@ -3,21 +3,12 @@
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
-<!--&ndash;&gt;-->
-<!--<ion-tabs class="tabs-striped tabs-top tabs-icon-only" delegate-handle="myhandle">-->
-  <!--&lt;!&ndash;[root]="tab.root" [tabTitle]="tab.title"&ndash;&gt;-->
-  <!--&lt;!&ndash;<ion-tab  *ngFor="let tab of tabs" title="{{tab.title}}" ></ion-tab>&ndash;&gt;-->
+-->
+<ion-content>
+<ion-tabs tabbarPlacement="top" >
+  <!--[root]="tab.root" [tabTitle]="tab.title"-->
 
-<!--</ion-tabs>-->
+  <ion-tab  *ngFor="let tab of tabs" [root]="tab.root" [tabTitle]="tab.title"  ></ion-tab>
 
-
-
-  <ion-tabs>
-    <ion-tab title="A">
-      <ion-content>Home - A</ion-content>
-    </ion-tab>
-    <ion-tab title="B">
-      <ion-content>Home - B</ion-content>
-    </ion-tab>
-  </ion-tabs>
-
+</ion-tabs>
+</ion-content>

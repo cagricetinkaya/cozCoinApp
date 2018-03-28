@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -13,15 +13,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-tabdynamic',
   templateUrl: 'tabdynamic.html',
 })
+
 export class TabdynamicPage {
   tabs : any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // this.tabs = [
-    //   { title: "Ayarlar", root: 'SettingsPage' },
-    //    { title: "Koinler", root: 'ListMasterPage' }
-    //   // { title: "Map", root: 'ListMasterPage' },
-    //   // { title: "About", root: 'ListMasterPage' },
-    // ];
+    this.tabs = [
+      { title: "Ayarlar", root: 'SettingsPage' },//
+        { title: "Koinler",root: 'ListMasterPage' }//
+      // { title: "Map", root: 'ListMasterPage' },
+      // { title: "About", root: 'ListMasterPage' },
+    ];
   }
 
   ionViewDidLoad() {
