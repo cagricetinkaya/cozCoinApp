@@ -18,7 +18,7 @@ export class ListMasterPage {
 
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
     this.currentItems = this.items.query();
-    this.picAdress="assets/img/coinIcon32_32/";
+    this.picAdress="assets/imgs/home24x24";
     this.favIcon="assets/img/favourite/fav24x24.png";
     this.favIconfalse="assets/img/favourite/fav_g24x24.png";
   }

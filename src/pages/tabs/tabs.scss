@@ -9,25 +9,25 @@
   transform: translate(0, 0);
 }
 
-.ion-ios-fa-bullhorn::before,
-.ion-ios-fa-bullhorn-outline::before,
-.ion-md-fa-bullhorn::before {
+.ion-ios-fa-home::before,
+.ion-ios-fa-home-outline::before,
+.ion-md-fa-home::before {
   @extend .fa-icons-general;
-  content: url("../../assets/img/coinIcon24_24/BTC.png");
+  content: url("../../assets/imgs/home24x24.png");
 }
 
-.ion-ios-fa-cutlery::before,
-.ion-ios-fa-cutlery-outline::before,
-.ion-md-fa-cutlery::before {
+.ion-ios-fa-coin::before,
+.ion-ios-fa-coin-outline::before,
+.ion-md-fa-coin::before {
   @extend .fa-icons-general;
-  content: "\f0f5";
+  content: url("../../assets/imgs/coin24x24.png");
 }
 
-.ion-ios-fa-graduation-cap::before,
-.ion-ios-fa-graduation-cap-outline::before,
-.ion-md-fa-graduation-cap::before {
+.ion-ios-fa-account::before,
+.ion-ios-fa-account-outline::before,
+.ion-md-fa-account::before {
   @extend .fa-icons-general;
-  content: "\f19d";
+  content: url("../../assets/imgs/account24x24.png");
 }
 
 .ion-ios-fa-calendar::before,
@@ -35,4 +35,9 @@
 .ion-md-fa-calendar::before {
   @extend .fa-icons-general;
   content: "\f073";
+}
+
+.top-44  .tab-nav{
+  height: 22px;
+  top:22px !important;
 }

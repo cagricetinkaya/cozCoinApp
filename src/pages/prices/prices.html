@@ -1,0 +1,40 @@
+<!--<ion-header>-->
+  <!--<ion-navbar>-->
+    <!--<ion-title>-->
+      <!--Content-->
+    <!--</ion-title>-->
+  <!--</ion-navbar>-->
+<!--</ion-header>-->
+
+<ion-content>
+  <ion-list cache-view="false" >
+    <ion-item-sliding *ngFor="let todo of data " >
+      <button ion-item *ngIf="todo.stockId === stockid" [(ngModel)]="todo.Coin_Name"  (ngModelChange)="changeItem(todo)" [ngModelOptions]=" {standalone: true}"  ngDefaultControl >
+        <h2>  {{todo.exchangeCode}} </h2>
+        <p>{{'PRICE'|translate}} : {{todo.last}}</p>
+        <p>Volume : {{todo.baseVolume}}</p>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+
+
+<!--<ng-template #thenTemplateName>-->
+<!---->
+<!--</ng-template>-->
+<!--<ion-item-options>-->
+<!--<button ion-button color="danger" (click)="deleteItem(item)">-->
+<!--{{ 'DELETE_BUTTON' | translate }}-->
+<!--</button>-->
+<!--</ion-item-options>-->
+<!--<ion-avatar item-end *ngIf="item.fav; then thenTemplateName else elseTemplateName">-->
+<!--</ion-avatar>-->
+
+<!--<ng-template #thenTemplateName>-->
+<!--<ion-img [src]="favIcon"></ion-img>-->
+<!--</ng-template>-->
+
+<!--<ng-template #elseTemplateName>-->
+<!--<ion-img [src]="favIconfalse"></ion-img>-->
+<!--</ng-template>-->

@@ -14,6 +14,7 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class TodosProvider {
 
+  tabs: any;
   data: any;
   db: any;
   remote: any;
@@ -50,9 +51,10 @@ export class TodosProvider {
   }
 
   startTimer() {
-    this.isRunning=true;
+    this.isRunning = true;
     this.tick();
   }
+
   tick() {
     setTimeout(x => {
       if (this.isRunning) {
@@ -62,9 +64,26 @@ export class TodosProvider {
     }, 500)
   }
 
-  stopTimer()
-  {
-    this.isRunning=false;
+  stopTimer() {
+    this.isRunning = false;
+  }
+
+  getData() {
+    if (this.tabs) {
+      return Promise.resolve(this.tabs);
+    }
+    return new Promise(resolve => {
+      this.db.query('findStockByName').then((result) => {
+
+        let docs = result.rows.map((row) => {
+          this.tabs.push(row.key);
+        });
+
+        resolve(this.tabs);
+      }).catch((error) => {
+        console.log(error);
+      });
+    });
   }
 
   getTodosProvider(type) { //type buraya fonksiyon olarak gönderilmelidir. type filtresi.

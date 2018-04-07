@@ -1,5 +1,6 @@
-import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {TodosProvider} from '../../providers/todos/todos';
 
 /**
  * Generated class for the TabdynamicPage page.
@@ -16,18 +17,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 export class TabdynamicPage {
   tabs : any;
+  data: any;
+  id: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.tabs = [
-      { title: "Ayarlar", root: 'SettingsPage' },//
-        { title: "Koinler",root: 'ListMasterPage' }//
-      // { title: "Map", root: 'ListMasterPage' },
-      // { title: "About", root: 'ListMasterPage' },
-    ];
+  isTabLoaded = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public todoProvider: TodosProvider) {
+    this.changeItem();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TabdynamicPage');
   }
 
+  changeItem() {
+    this.todoProvider.getData().then((data) => {
+      this.tabs = data;
+      this.isTabLoaded=true;
+    });
+
+  }
 }
+
+
