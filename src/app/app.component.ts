@@ -3,7 +3,6 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {TranslateService} from '@ngx-translate/core';
 import {Config, Nav, Platform} from 'ionic-angular';
-
 import {FirstRunPage} from '../pages/pages';
 import {Settings} from '../providers/providers';
 
@@ -56,6 +55,7 @@ export class MyApp {
       this.splashScreen.hide();
     });
     this.initTranslate();
+    this.initOneSignal();
   }
 
   initTranslate() {
@@ -88,5 +88,15 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  initOneSignal(){
+    window["plugins"].OneSignal
+      .startInit("60f9b644-232f-4a05-b5de-929bf8776c32","866488061179")
+      .handleNotificationOpened(function(jsonData) {
+        alert("Notification opened:\n" + JSON.stringify(jsonData));
+        console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+      })
+      .endInit();
   }
 }
