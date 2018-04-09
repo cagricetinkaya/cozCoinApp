@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController ,NavParams} from 'ionic-angular';
 import { User } from '../../providers/providers';
-import {TodosProvider} from '../../providers/todos/todos'
+import {TodosProvider} from '../../providers/todos/todos';
 
 
 @IonicPage()
@@ -11,6 +11,8 @@ import {TodosProvider} from '../../providers/todos/todos'
   templateUrl: 'signup.html'
 })
 export class SignupPage {
+
+  playerId : any;
 
   account: {  Email: string, Password: string, Type: string } = {
     Email: '',
@@ -21,7 +23,10 @@ export class SignupPage {
   // Our translated text strings
   private signupErrorString: string;
 
-  constructor(public navCtrl: NavController, public user: User,public translateService: TranslateService, public todoProvider: TodosProvider) {
+  constructor(public navCtrl: NavController, public user: User,public translateService: TranslateService,
+             navParams:NavParams, public todoProvider: TodosProvider) {
+debugger;
+    this.playerId = navParams.get('paramPlayerId');
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
@@ -29,6 +34,7 @@ export class SignupPage {
   }
 
   doSignup() {
+    debugger;
     this.todoProvider.createTodosProvider(this.account);
   }
 }

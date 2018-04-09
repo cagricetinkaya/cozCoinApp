@@ -15,6 +15,7 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { TodosProvider } from '../providers/todos/todos';
 import { MathProvider } from '../providers/math/math';
+import {OneSignal} from "@ionic-native/onesignal";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -69,7 +70,8 @@ export function provideSettings(storage: Storage) {
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     TodosProvider,
-    MathProvider
+    MathProvider,
+    OneSignal
   ]
 })
 export class AppModule { }
